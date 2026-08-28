@@ -91,10 +91,11 @@ export const ChatVideo: React.FC = () => {
     : "";
 
   const showDots = DOTS.some((d) => frame >= d.at && frame < d.until);
-  const suggestedOpacity = interpolate(frame, [140, 165, 320, 340], [0, 1, 1, 0], {
+  const suggestedOpacity = interpolate(frame, [140, 165, 310, 330], [0, 1, 1, 0], {
     extrapolateRight: "clamp",
     extrapolateLeft: "clamp",
   });
+
 
   return (
     <AbsoluteFill style={{ background: C.page, opacity: fadeIn }}>
