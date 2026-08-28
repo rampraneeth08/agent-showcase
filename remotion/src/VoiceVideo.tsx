@@ -21,12 +21,12 @@ const MSGS: Msg[] = [
   {
     from: "agent",
     at: 110,
-    text: "Hi! I'm Vani, your customer support assistant. Ask me anything about your order, delivery or returns.",
+    text: "Hi! I'm Vani, your customer support assistant. Ask me anything about plans, billing or your account.",
   },
   {
     from: "user",
     at: 300,
-    text: "I need help with a damaged product. Can you call me?",
+    text: "I'd like to change my subscription plan. Can you call me?",
   },
   {
     from: "agent",
@@ -41,48 +41,57 @@ type Line = { who: string; text: string; start: number; dur: number };
 
 const LINES: Line[] = [
   {
-    who: AGENT,
-    text: "Hi, this is Vani from customer support. Thanks for taking my call - how can I help you today?",
+    who: "Customer",
+    text: "Hi, can I change my subscription plan?",
     start: 545,
+    dur: 45,
+  },
+  {
+    who: AGENT,
+    text: "Of course. You can switch your plan anytime. Would you like to upgrade to the Pro plan?",
+    start: 615,
     dur: 80,
   },
   {
     who: "Customer",
-    text: "Hi Vani. My blender arrived with a cracked jar and I would like a refund.",
-    start: 645,
-    dur: 65,
+    text: "Yes, please. What will I get with the Pro plan?",
+    start: 715,
+    dur: 55,
   },
   {
     who: AGENT,
-    text: "I'm sorry about that. I've raised a refund request for the damaged jar.",
-    start: 730,
-    dur: 62,
+    text: "The Pro plan gives you access to additional features and higher usage limits. I can upgrade your account right away.",
+    start: 790,
+    dur: 90,
   },
   {
     who: "Customer",
-    text: "How long will the refund take?",
-    start: 812,
+    text: "Will I be charged immediately?",
+    start: 900,
     dur: 40,
   },
   {
     who: AGENT,
-    text: "It will be credited to your original payment method within 3 working days.",
-    start: 872,
-    dur: 62,
+    text: "Yes. You'll only be charged the prorated difference for the remainder of your current billing cycle.",
+    start: 960,
+    dur: 85,
   },
   {
     who: "Customer",
-    text: "Perfect. Thank you, Vani!",
-    start: 954,
-    dur: 38,
+    text: "Okay, go ahead and upgrade me.",
+    start: 1065,
+    dur: 45,
   },
   {
     who: AGENT,
-    text: "Happy to help. Have a great day!",
-    start: 1012,
-    dur: 40,
+    text: "Done. Your plan has been upgraded to Pro, and the new features are available now.",
+    start: 1130,
+    dur: 85,
   },
+  { who: "Customer", text: "Thank you!", start: 1235, dur: 30 },
+  { who: AGENT, text: "You're welcome!", start: 1285, dur: 35 },
 ];
+
 
 const CallPill: React.FC<{ opacity: number }> = ({ opacity }) => (
   <div
