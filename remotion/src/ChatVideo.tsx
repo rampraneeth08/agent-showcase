@@ -18,47 +18,56 @@ const MSGS: Msg[] = [
   {
     from: "agent",
     at: 130,
-    text: "Hi! I'm Vani, your customer support assistant. Ask me anything about your order, delivery or returns.",
+    text: "Hi! I'm Vani, your customer support assistant. Ask me anything about plans, trials or billing.",
   },
-  {
-    from: "user",
-    at: 330,
-    text: "My order #48219 has not arrived yet. Can you check the status?",
-  },
+  { from: "user", at: 325, text: "Is there a free trial?" },
   {
     from: "agent",
-    at: 400,
-    text: "I've checked it - your parcel is out for delivery and will reach you by 7 PM today.",
+    at: 395,
+    text: "Yes, you can try it free for 14 days with no credit card required.",
   },
-  {
-    from: "user",
-    at: 570,
-    text: "Can you send me the tracking link as well?",
-  },
+  { from: "user", at: 575, text: "What happens after the trial ends?" },
   {
     from: "agent",
-    at: 640,
-    text: "Done. I've sent the tracking link to your registered email and phone number.",
+    at: 645,
+    text: "You can choose a subscription plan when your trial ends. There's no automatic charge during the trial.",
   },
-  { from: "user", at: 770, text: "Thank you" },
+  { from: "user", at: 805, text: "Can I cancel anytime?" },
   {
     from: "agent",
-    at: 840,
-    text: "Happy to help! Have a great day.",
+    at: 875,
+    text: "Yes. You can cancel your subscription anytime, with no lock-in.",
+  },
+  { from: "user", at: 1045, text: "Do I need to contact support to cancel?" },
+  {
+    from: "agent",
+    at: 1115,
+    text: "No. You can cancel directly from your account settings in just a few clicks.",
+  },
+  { from: "user", at: 1255, text: "Great, thank you!" },
+  {
+    from: "agent",
+    at: 1325,
+    text: "You're welcome! Let me know if you need any help getting started.",
   },
 ];
 
 const TYPING: { start: number; end: number; text: string }[] = [
-  { start: 210, end: 325, text: MSGS[1].text },
-  { start: 460, end: 565, text: MSGS[3].text },
-  { start: 700, end: 765, text: "Thank you" },
+  { start: 210, end: 320, text: MSGS[1].text },
+  { start: 450, end: 570, text: MSGS[3].text },
+  { start: 700, end: 800, text: MSGS[5].text },
+  { start: 930, end: 1040, text: MSGS[7].text },
+  { start: 1170, end: 1250, text: MSGS[9].text },
 ];
 
 const DOTS = [
-  { at: 360, until: 400 },
-  { at: 600, until: 640 },
-  { at: 800, until: 840 },
+  { at: 355, until: 395 },
+  { at: 605, until: 645 },
+  { at: 835, until: 875 },
+  { at: 1075, until: 1115 },
+  { at: 1285, until: 1325 },
 ];
+
 
 export const ChatVideo: React.FC = () => {
   const frame = useCurrentFrame();
@@ -82,10 +91,11 @@ export const ChatVideo: React.FC = () => {
     : "";
 
   const showDots = DOTS.some((d) => frame >= d.at && frame < d.until);
-  const suggestedOpacity = interpolate(frame, [140, 165, 320, 340], [0, 1, 1, 0], {
+  const suggestedOpacity = interpolate(frame, [140, 165, 310, 330], [0, 1, 1, 0], {
     extrapolateRight: "clamp",
     extrapolateLeft: "clamp",
   });
+
 
   return (
     <AbsoluteFill style={{ background: C.page, opacity: fadeIn }}>
